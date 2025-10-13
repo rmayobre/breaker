@@ -8,8 +8,7 @@ final class LayoutConstraints {
     required this.spacing,
   });
 
-
-  final int? body;
+  final double? body;
   final int span;
   final double spanSize;
   final double margin;
@@ -24,7 +23,13 @@ final class LayoutConstraints {
               spacing == other.spacing;
 
   @override
-  int get hashCode => Object.hash(body, span, spanSize, margin, spacing);
+  int get hashCode =>
+      Object.hash(
+          body,
+          span,
+          spanSize,
+          margin,
+          spacing);
 
   @override
   String toString() {

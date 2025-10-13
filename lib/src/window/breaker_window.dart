@@ -5,8 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../material.dart';
-import 'window_model.dart';
-import 'window_type.dart';
 
 final class BreakerWindow<T extends WindowType> extends StatefulWidget {
   const BreakerWindow({

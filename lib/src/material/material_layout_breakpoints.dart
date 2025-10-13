@@ -33,7 +33,7 @@ List<LayoutBreakpoint> materialLayoutBreakpoints = const [
   LayoutBreakpoint(
     minWidth: 1440,
     minMargin: 201,
-    maxMargin: 300,
+    // maxMargin: 300,
     body: 1040,
     span: 12,
     spacing: 36,

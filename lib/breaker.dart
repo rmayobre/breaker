@@ -28,7 +28,7 @@ final class Breaker {
   static int panes(BuildContext context) => WindowModel.maybeOf(context)!.type.panes;
   static T window<T extends WindowType>(BuildContext context) => WindowModel.maybeOf<T>(context)!.type;
 
-  static int? body(BuildContext context) => LayoutModel.of(context, LayoutAspect.body).body;
+  static double? body(BuildContext context) => LayoutModel.of(context, LayoutAspect.body).body;
   static int span(BuildContext context) => LayoutModel.of(context, LayoutAspect.span).span;
   static double spanSize(BuildContext context) => LayoutModel.of(context, LayoutAspect.spanSize).spanSize;
   static double margin(BuildContext context) => LayoutModel.of(context, LayoutAspect.margin).margin;

@@ -55,7 +55,7 @@ final class LayoutModel extends InheritedModel<LayoutAspect> {
   static LayoutModel? maybeOf(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType();
 
-  final int? body;
+  final double? body;
 
   final int span;
 

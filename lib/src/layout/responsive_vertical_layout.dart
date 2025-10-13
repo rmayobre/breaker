@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import '../breakpoint.dart';
@@ -39,6 +40,18 @@ final class ResponsiveVerticalLayout extends StatelessWidget {
     for (int i = 0; i < cells.length; i++) {
       rowChildren.add(cells[i].build(context, constraints));
       if (i < cells.length - 1) rowChildren.add(SizedBox(width: constraints.spacing)); // ignore the last index.
+    }
+    print('Body: ${constraints.body}');
+    if (constraints.body != null) { // TODO this breaks because the Row's child are setting their own width too large - update spanSize calculations!
+      return Container(
+          margin: EdgeInsets.symmetric(horizontal: constraints.margin),
+          child: SizedBox(
+            width: constraints.body!,
+            child: Row(
+                children: rowChildren
+            ),
+          ),
+      );
     }
     return Container(
       margin: EdgeInsets.symmetric(horizontal: constraints.margin),

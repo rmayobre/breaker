@@ -116,9 +116,12 @@ final class LayoutBreakpoint implements Breakpoint {
   @override
   final double maxWidth;
 
-  final int? body;
+  final double? body;
 
   final int span;
+
+  // TODO Margin cannot be set to scaling if body is not set.
+  // TODO figure out how to set static margin, scaling margin, and (maybe) scaling margin with limits
   
   final double minMargin;
   

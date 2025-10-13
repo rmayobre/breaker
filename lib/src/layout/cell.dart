@@ -25,9 +25,10 @@ final class _StatelessCell implements Cell {
 
   @override
   Widget build(BuildContext context, LayoutConstraints constraints) {
-    final spanSize = span(constraints);
-    final spanSizeTotal = constraints.spanSize * spanSize;
-    final spacingTotal = constraints.spacing * (spanSize - 1);
+    final spanNum = span(constraints); // TODO spanNum or span
+    final spanSizeTotal = constraints.spanSize * spanNum;
+    final spacingTotal = constraints.spacing * (spanNum - 1);
+    print('spanNum: $spanNum, spanSizeTotal: $spanSizeTotal, spacingTotal: $spacingTotal, SizedBox: ${spanSizeTotal + spacingTotal}');
     return SizedBox(
       width: spanSizeTotal + spacingTotal,
       child: child,
