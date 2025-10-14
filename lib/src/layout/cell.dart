@@ -25,11 +25,9 @@ final class _StatelessCell implements Cell {
 
   @override
   Widget build(BuildContext context, LayoutConstraints constraints) {
-    final spanNum = span(constraints); // TODO spanNum or span
-    final spanSizeTotal = constraints.spanSize * spanNum;
-    final spacingTotal = constraints.spacing * (spanNum - 1);
+    final spanNum = span(constraints); // TODO spans?
     return SizedBox(
-      width: spanSizeTotal + spacingTotal,
+      width: constraints.calculateSpan(spanNum),
       child: child,
     );
   }
