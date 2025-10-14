@@ -129,7 +129,7 @@ final class LayoutBreakpoint implements Breakpoint {
 
   final double spacing;
 
-  const LayoutBreakpoint({
+  const LayoutBreakpoint({ // TODO needs a check for body and min margin
     this.minHeight = 0,
     this.maxHeight = double.maxFinite,
     this.minWidth = 0,

@@ -32,8 +32,8 @@ List<LayoutBreakpoint> materialLayoutBreakpoints = const [
   ),
   LayoutBreakpoint(
     minWidth: 1440,
-    minMargin: 201,
-    // maxMargin: 300,
+    minMargin: 200, // TODO check minMargin with body to add up the different. (200 * 2 - 1440 = 1040)
+    // maxMargin: 300, TODO support scaling
     body: 1040,
     span: 12,
     spacing: 36,
