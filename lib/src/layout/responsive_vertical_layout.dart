@@ -41,7 +41,6 @@ final class ResponsiveVerticalLayout extends StatelessWidget {
       rowChildren.add(cells[i].build(context, constraints));
       if (i < cells.length - 1) rowChildren.add(SizedBox(width: constraints.spacing)); // ignore the last index.
     }
-    print('Body: ${constraints.body}');
     if (constraints.body != null) {
       return Container(
         width: constraints.body!,
