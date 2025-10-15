@@ -118,7 +118,7 @@ final class LayoutBreakpoint implements Breakpoint {
 
   final double? body;
 
-  final int span;
+  final int axes;
   
   final double minMargin;
   
@@ -134,7 +134,7 @@ final class LayoutBreakpoint implements Breakpoint {
     this.body,
     this.minMargin = 0,
     this.maxMargin = 0,
-    required this.span,
+    required this.axes,
     required this.spacing
   }) : assert(minHeight >= 0), 
         assert(maxHeight >= 0),
@@ -143,7 +143,7 @@ final class LayoutBreakpoint implements Breakpoint {
         assert(body == null || body >= 0),
         assert(minMargin >= 0),
         assert(maxMargin >= 0),
-        assert(span >= 0),
+        assert(axes >= 0),
         assert(spacing >= 0);
 
   bool inRange(BoxConstraints constraints) {
@@ -162,7 +162,7 @@ final class LayoutBreakpoint implements Breakpoint {
           other is LayoutBreakpoint && runtimeType == other.runtimeType &&
               minHeight == other.minHeight && maxHeight == other.maxHeight &&
               minWidth == other.minWidth && maxWidth == other.maxWidth &&
-              body == other.body && span == other.span &&
+              body == other.body && axes == other.axes &&
               minMargin == other.minMargin && maxMargin == other.maxMargin &&
               spacing == other.spacing;
 
@@ -174,7 +174,7 @@ final class LayoutBreakpoint implements Breakpoint {
           minWidth,
           maxWidth,
           body,
-          span,
+          axes,
           minMargin,
           maxMargin,
           spacing);
@@ -187,7 +187,7 @@ final class LayoutBreakpoint implements Breakpoint {
         'minWidth: $minWidth, '
         'maxWidth: $maxWidth, '
         'body: $body, '
-        'span: $span, '
+        'axes: $axes, '
         'minMargin: $minMargin, '
         'maxMargin: $maxMargin, '
         'spacing: $spacing}';

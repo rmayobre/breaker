@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'layout_constraints.dart';
 import 'responsive_layout_builder.dart';
 import 'responsive_layout_overlay.dart';
-import 'span_calculator.dart';
+import 'axis_calculator.dart';
 import '../breakpoint.dart';
 
 ///
@@ -29,14 +29,17 @@ final class ResponsiveGridLayout extends StatelessWidget {
   const ResponsiveGridLayout({
     super.key,
     this.isOverlayEnabled = false,
-    required this.columns,
+    this.axisExtent,
+    required this.axisCount,
     required this.breakpoints,
     required this.itemBuilder,
   });
 
   final bool isOverlayEnabled;
+  
+  final double? axisExtent;
 
-  final SpanCalculator columns;
+  final AxisCalculator axisCount;
 
   final List<LayoutBreakpoint> breakpoints;
 
@@ -63,11 +66,10 @@ final class ResponsiveGridLayout extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: constraints.margin),
       child: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: columns(constraints),
+          crossAxisCount: axisCount(constraints),
           crossAxisSpacing: constraints.spacing,
           mainAxisSpacing: constraints.spacing,
-          // childAspectRatio: 0.7,
-          // mainAxisExtent: 950 // TODO handle height/aspect-ratio
+          mainAxisExtent: axisExtent
         ),
         itemBuilder: itemBuilder,
       ),

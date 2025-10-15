@@ -17,23 +17,24 @@ final class BreakerLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveLayoutBuilder(
         breakpoints: breakpoints,
-        builder: (context, constraints) =>
-            LayoutModel(
-              body: constraints.body,
-              margin: constraints.margin,
-              span: constraints.span,
-              spanSize: constraints.spanSize,
-              spacing: constraints.spacing,
-              child: child,
-            )
+        builder: (context, constraints) {
+          return LayoutModel(
+            body: constraints.body,
+            margin: constraints.margin,
+            axes: constraints.axes,
+            axisSize: constraints.axisSize,
+            spacing: constraints.spacing,
+            child: child,
+          );
+        }
     );
   }
 }
 
 enum LayoutAspect {
   body,
-  span,
-  spanSize,
+  axes,
+  axisSize,
   margin,
   spacing;
 }
@@ -42,8 +43,8 @@ final class LayoutModel extends InheritedModel<LayoutAspect> {
   const LayoutModel({
     super.key,
     this.body,
-    required this.span,
-    required this.spanSize,
+    required this.axes,
+    required this.axisSize,
     required this.margin,
     required this.spacing,
     required super.child
@@ -56,19 +57,15 @@ final class LayoutModel extends InheritedModel<LayoutAspect> {
       context.dependOnInheritedWidgetOfExactType();
 
   final double? body;
-
-  final int span;
-
-  final double spanSize;
-
+  final int axes;
+  final double axisSize;
   final double margin;
-
   final double spacing;
 
   @override
   bool updateShouldNotify(covariant LayoutModel oldWidget) =>
       body != oldWidget.body
-          || span != oldWidget.span
+          || axes != oldWidget.axes
           || margin != oldWidget.margin
           || spacing != oldWidget.spacing;
 
@@ -81,13 +78,13 @@ final class LayoutModel extends InheritedModel<LayoutAspect> {
             return true;
           }
           break;
-        case LayoutAspect.span:
-          if (span != oldWidget.span) {
+        case LayoutAspect.axes:
+          if (axes != oldWidget.axes) {
             return true;
           }
           break;
-        case LayoutAspect.spanSize:
-          if (spanSize != oldWidget.spanSize) {
+        case LayoutAspect.axisSize:
+          if (axisSize != oldWidget.axisSize) {
             return true;
           }
           break;

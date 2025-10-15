@@ -6,8 +6,8 @@ final class LayoutConstraints {
 
   const LayoutConstraints({
     this.body,
-    required this.span,
-    required this.spanSize,
+    required this.axes,
+    required this.axisSize,
     required this.margin,
     required this.spacing,
   });
@@ -26,12 +26,12 @@ final class LayoutConstraints {
       margin = calculateMargin(norm.maxWidth, 0, breakpoint);
       width = norm.maxWidth - (margin * 2);
     }
-    final spanSize = calculateSpanSize(width, breakpoint);
+    final spanSize = calculateAxisSize(width, breakpoint);
     return LayoutConstraints(
       body: breakpoint.body,
       margin: margin,
-      span: breakpoint.span,
-      spanSize: spanSize,
+      axes: breakpoint.axes,
+      axisSize: spanSize,
       spacing: breakpoint.spacing,
     );
   }
@@ -45,42 +45,41 @@ final class LayoutConstraints {
     return (marginOffset * percentage) + breakpoint.minMargin;
   }
 
-  // TODO rename to calculateAxisSize?
-  static double calculateSpanSize(double width, LayoutBreakpoint breakpoint) {
-    final span = breakpoint.span;
+  static double calculateAxisSize(double width, LayoutBreakpoint breakpoint) {
+    final axes = breakpoint.axes;
     final spacing = breakpoint.spacing;
-    final totalSpacing = spacing * (span - 1);
+    final totalSpacing = spacing * (axes - 1);
     final totalSpanSize = width - totalSpacing;
-    final spanSize = totalSpanSize / span;
+    final spanSize = totalSpanSize / axes;
     return spanSize;
   }
 
   final double? body;
-  final int span; // TODO spans?
-  final double spanSize; // TODO axisSize?
+  final int axes;
+  final double axisSize;
   final double margin;
   final double spacing;
 
-  double calculateSpan(int span) { // TODO rename?
-    final spanSizeTotal = spanSize * span;
-    final spacingTotal = spacing * (span - 1);
-    return spanSizeTotal + spacingTotal;
+  double calculateSpan(int axes) {
+    final totalAxisSize = axisSize * axes;
+    final totalSpacingSize = spacing * (axes - 1);
+    return totalAxisSize + totalSpacingSize;
   }
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
           other is LayoutConstraints && runtimeType == other.runtimeType &&
-              body == other.body && span == other.span &&
-              spanSize == other.spanSize && margin == other.margin &&
+              body == other.body && axes == other.axes &&
+              axisSize == other.axisSize && margin == other.margin &&
               spacing == other.spacing;
 
   @override
   int get hashCode =>
       Object.hash(
           body,
-          span,
-          spanSize,
+          axes,
+          axisSize,
           margin,
           spacing);
 
@@ -88,8 +87,8 @@ final class LayoutConstraints {
   String toString() {
     return 'LayoutConstraints{'
         'body: $body, '
-        'span: $span, '
-        'spanSize: $spanSize, '
+        'axes: $axes, '
+        'axisSize: $axisSize, '
         'margin: $margin, '
         'spacing: $spacing}';
   }

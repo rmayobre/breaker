@@ -13,7 +13,7 @@ export 'src/layout/responsive_grid_layout.dart';
 export 'src/layout/responsive_layout_builder.dart';
 export 'src/layout/responsive_layout_overlay.dart';
 export 'src/layout/responsive_vertical_layout.dart';
-export 'src/layout/span_calculator.dart';
+export 'src/layout/axis_calculator.dart';
 
 export 'src/window/breaker_window.dart';
 export 'src/window/window_model.dart';
@@ -29,8 +29,8 @@ final class Breaker {
   static T window<T extends WindowType>(BuildContext context) => WindowModel.maybeOf<T>(context)!.type;
 
   static double? body(BuildContext context) => LayoutModel.of(context, LayoutAspect.body).body;
-  static int span(BuildContext context) => LayoutModel.of(context, LayoutAspect.span).span;
-  static double spanSize(BuildContext context) => LayoutModel.of(context, LayoutAspect.spanSize).spanSize;
+  static int span(BuildContext context) => LayoutModel.of(context, LayoutAspect.axes).axes;
+  static double spanSize(BuildContext context) => LayoutModel.of(context, LayoutAspect.axisSize).axisSize;
   static double margin(BuildContext context) => LayoutModel.of(context, LayoutAspect.margin).margin;
   static double spacing(BuildContext context) => LayoutModel.of(context, LayoutAspect.spacing).spacing;
 }

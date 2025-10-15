@@ -65,14 +65,14 @@ final class ResponsiveLayoutDemo extends StatelessWidget {
     return ResponsiveLayoutBuilder(
         breakpoints: materialLayoutBreakpoints,
         builder: (context, constraints) {
-          if (constraints.span == 4) {
+          if (constraints.axes == 4) {
             return ListLayout(
               constraints: constraints,
               paneOne: paneOne,
               paneTwo: paneTwo,
               paneThree: paneThree,
             );
-          } else if (constraints.span == 8) {
+          } else if (constraints.axes == 8) {
             return ForkedLayout(
               constraints: constraints,
               paneOne: paneOne,
@@ -153,7 +153,7 @@ final class ForkedLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final spanSizeTotal = constraints.spanSize * 4;
+    final spanSizeTotal = constraints.axisSize * 4;
     final spacingTotal = constraints.spacing * (4 - 1);
     return ResponsiveLayoutOverlay(
       constraints: constraints,
@@ -205,15 +205,15 @@ final class ThreeColumnLayout extends StatelessWidget {
       breakpoints: materialLayoutBreakpoints,
       cells: [
         Cell(
-          span: (constraints) => (constraints.span / 3).toInt(),
+          span: (constraints) => (constraints.axes / 3).toInt(),
           child: paneOne,
         ),
         Cell(
-          span: (constraints) => (constraints.span / 3).toInt(),
+          span: (constraints) => (constraints.axes / 3).toInt(),
           child: paneTwo,
         ),
         Cell(
-          span: (constraints) => (constraints.span / 3).toInt(),
+          span: (constraints) => (constraints.axes / 3).toInt(),
           child: paneThree,
         ),
       ],

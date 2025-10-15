@@ -42,14 +42,14 @@ final class ResponsiveLayoutOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) { // TODO support horizontal
     final List<Widget> spansAndSpaces = [];
-    for (var i = 0; i < constraints.span; i++) {
+    for (var i = 0; i < constraints.axes; i++) {
       spansAndSpaces.add(
           ColoredBox(
             color: spanColor.withValues(alpha: _overlayOpacity),
-            child: SizedBox(width: constraints.spanSize, height: double.infinity),
+            child: SizedBox(width: constraints.axisSize, height: double.infinity),
           )
       );
-      if (i < constraints.span - 1) {
+      if (i < constraints.axes - 1) {
         spansAndSpaces.add(
             ColoredBox(
               color: spacingColor.withValues(alpha: _overlayOpacity),
