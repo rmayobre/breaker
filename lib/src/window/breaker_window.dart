@@ -32,6 +32,7 @@ final class BreakerWindowState<T extends WindowType> extends State<BreakerWindow
   @override
   void initState() {
     super.initState();
+    // TODO move the global device reference to better support web and the BrowserDetection logic.
     if (Platform.isAndroid) {
       device = DeviceType.mobile;
       platform = PlatformType.android;

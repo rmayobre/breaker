@@ -32,7 +32,7 @@ List<LayoutBreakpoint> materialLayoutBreakpoints = const [
   ),
   LayoutBreakpoint(
     minWidth: 1440,
-    minMargin: 200, // TODO check minMargin with body to add up the different. (200 * 2 - 1440 = 1040) - Assert!
+    minMargin: 200, // TODO putting larger minMargin no longer overflows pixels. It should not safe-guard against this and instead assert proper numbers.
     body: 1040,
     axes: 12,
     spacing: 36,

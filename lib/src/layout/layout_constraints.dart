@@ -19,9 +19,11 @@ final class LayoutConstraints {
     final double width;
     final double margin;
     if (breakpoint.body != null) {
+      // static body size.
       width = breakpoint.body!;
       margin = calculateMargin(constraints.normalize().maxWidth, width, breakpoint);
     } else {
+      // scaling body size.
       final norm = constraints.normalize();
       margin = calculateMargin(norm.maxWidth, 0, breakpoint);
       width = norm.maxWidth - (margin * 2);
@@ -44,6 +46,28 @@ final class LayoutConstraints {
     final double percentage = ((width - breakpoint.minWidth)) / (breakpoint.maxWidth - breakpoint.minWidth);
     return (marginOffset * percentage) + breakpoint.minMargin;
   }
+
+  // TODO fix the margin calculations and assertions
+  // static double calculateMargin(double width, LayoutBreakpoint breakpoint) {
+  //   assert(() {
+  //     final body = breakpoint.body;
+  //     if (body == null) return true;
+  //     if (width < body) throw ArgumentError("Width ($width) is smaller than breakpoint body ($body).");
+  //     if (body + (breakpoint.minMargin * 2) > width) {
+  //       throw ArgumentError("Breakpoint body ($body) with min margin (${breakpoint.minMargin}) cannot be larger than width.");
+  //     }
+  //     return true;
+  //   }());
+  //   if (breakpoint.maxMargin == 0 && breakpoint.minMargin == 0) return 0;
+  //   if (breakpoint.maxMargin == 0  && breakpoint.body != null && breakpoint.body! > 0) {
+  //     final availableSpace = width - breakpoint.body!;
+  //     return (width - breakpoint.body!) / 2;
+  //   }
+  //   if (breakpoint.maxMargin == 0 || breakpoint.maxWidth == 0) return breakpoint.minMargin;
+  //   final double marginOffset = breakpoint.maxMargin - breakpoint.minMargin;
+  //   final double percentage = ((width - breakpoint.minWidth)) / (breakpoint.maxWidth - breakpoint.minWidth);
+  //   return (marginOffset * percentage) + breakpoint.minMargin;
+  // }
 
   static double calculateAxisSize(double width, LayoutBreakpoint breakpoint) {
     final axes = breakpoint.axes;

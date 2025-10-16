@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import '../../breaker.dart';
 
 final class BreakerLayout extends StatelessWidget {
-  const BreakerLayout({
+  const BreakerLayout({ // TODO create a BreakerLayout delegate for vertical, horizontal, and grid layouts - replace responsive layout
     super.key,
     required this.breakpoints,
     required this.child

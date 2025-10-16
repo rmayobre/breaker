@@ -4,27 +4,14 @@ import 'device_type.dart';
 import 'platform_type.dart';
 import 'window/window_type.dart';
 
-sealed class Breakpoint {
+final class WindowBreakpoint<T extends WindowType> {// TODO move to separate file
 
-  double get minHeight;
-  double get maxHeight;
-
-  double get minWidth;
-  double get maxWidth;
-}
-
-final class WindowBreakpoint<T extends WindowType> implements Breakpoint {
-
-  @override
   final double minHeight;
 
-  @override
   final double maxHeight;
 
-  @override
   final double minWidth;
 
-  @override
   final double maxWidth;
 
   final Orientation? orientation;
@@ -102,18 +89,14 @@ final class WindowBreakpoint<T extends WindowType> implements Breakpoint {
   }
 }
 
-final class LayoutBreakpoint implements Breakpoint {
+final class LayoutBreakpoint { // TODO move to separate file
 
-  @override
   final double minHeight;
 
-  @override
   final double maxHeight;
 
-  @override
   final double minWidth;
 
-  @override
   final double maxWidth;
 
   final double? body;
@@ -126,7 +109,7 @@ final class LayoutBreakpoint implements Breakpoint {
 
   final double spacing;
 
-  const LayoutBreakpoint({ // TODO needs a check for body and min margin
+  const LayoutBreakpoint({
     this.minHeight = 0,
     this.maxHeight = double.maxFinite,
     this.minWidth = 0,
@@ -149,6 +132,14 @@ final class LayoutBreakpoint implements Breakpoint {
   bool inRange(BoxConstraints constraints) {
     final height = constraints.normalize().maxHeight;
     final width = constraints.normalize().maxWidth;
+
+    // assert(() {
+    //   final body = this.body;
+    //   if (body == null) return true;
+    //   if (body + (minMargin * 2) > minWidth) throw ArgumentError("");
+    //   return true;
+    // }());
+    // assert(body == null || body + (margin * 2))
 
     if (minHeight > height || height > maxHeight) return false;
     if (minWidth > width || width > maxWidth) return false;

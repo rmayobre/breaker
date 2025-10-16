@@ -8,13 +8,13 @@ abstract interface class Cell {
   factory Cell({
     required AxisCalculator span,
     required Widget child,
-  }) => _StatelessCell(axes: span, child: child);
+  }) => _Cell(axes: span, child: child);
 
   Widget build(BuildContext context, LayoutConstraints constraints);
 }
 
-final class _StatelessCell implements Cell {
-  const _StatelessCell({
+final class _Cell implements Cell {
+  const _Cell({
     required this.axes,
     required this.child
   });
