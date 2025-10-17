@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../breakpoint.dart';
+import '../layout_breakpoint.dart';
 import 'layout_constraints.dart';
 
 typedef ResponsiveWidgetBuilder = Widget Function(BuildContext context, LayoutConstraints constraints);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import '../breakpoint.dart';
+import '../layout_breakpoint.dart';
 import 'cell.dart';
 import 'layout_constraints.dart';
 import 'responsive_layout_builder.dart';

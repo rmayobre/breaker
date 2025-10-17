@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../breakpoint.dart';
+import '../layout_breakpoint.dart';
 
 final class LayoutConstraints {
 

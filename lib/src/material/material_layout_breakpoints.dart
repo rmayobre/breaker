@@ -1,4 +1,4 @@
-import '../../breaker.dart';
+import '../layout_breakpoint.dart';
 
 List<LayoutBreakpoint> materialLayoutBreakpoints = const [
   LayoutBreakpoint(

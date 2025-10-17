@@ -19,9 +19,10 @@ export 'src/window/breaker_window.dart';
 export 'src/window/window_model.dart';
 export 'src/window/window_type.dart';
 
-export 'src/breakpoint.dart';
 export 'src/device_type.dart';
+export 'src/layout_breakpoint.dart';
 export 'src/platform_type.dart';
+export 'src/window_breakpoint.dart';
 
 final class Breaker {
 
