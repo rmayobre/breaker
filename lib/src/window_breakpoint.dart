@@ -2,9 +2,9 @@ import 'package:flutter/widgets.dart';
 
 import 'device_type.dart';
 import 'platform_type.dart';
-import 'window/window_type.dart';
+import 'window/navigation_type.dart';
 
-final class WindowBreakpoint<T extends WindowType> {// TODO move to separate file
+final class WindowBreakpoint {
 
   final double minHeight;
 
@@ -15,12 +15,14 @@ final class WindowBreakpoint<T extends WindowType> {// TODO move to separate fil
   final double maxWidth;
 
   final Orientation? orientation;
-  
+
   final DeviceType? device;
-  
+
   final PlatformType? platform;
 
-  final T window;
+  final NavigationType? navigation;
+
+  final int panes;
 
   const WindowBreakpoint({
     this.minHeight = 0,
@@ -30,7 +32,8 @@ final class WindowBreakpoint<T extends WindowType> {// TODO move to separate fil
     this.orientation,
     this.device,
     this.platform,
-    required this.window
+    this.navigation,
+    required this.panes
   }) : assert(minHeight >= 0),
         assert(maxHeight >= 0),
         assert(minWidth >= 0),
@@ -61,7 +64,8 @@ final class WindowBreakpoint<T extends WindowType> {// TODO move to separate fil
               minHeight == other.minHeight && maxHeight == other.maxHeight &&
               minWidth == other.minWidth && maxWidth == other.maxWidth &&
               orientation == other.orientation && device == other.device &&
-              platform == other.platform && window == other.window;
+              platform == other.platform && navigation == other.navigation &&
+              panes == other.panes;
 
   @override
   int get hashCode =>
@@ -73,7 +77,8 @@ final class WindowBreakpoint<T extends WindowType> {// TODO move to separate fil
           orientation,
           device,
           platform,
-          window);
+          navigation,
+          panes);
 
   @override
   String toString() {
@@ -85,6 +90,7 @@ final class WindowBreakpoint<T extends WindowType> {// TODO move to separate fil
         'orientation: $orientation, '
         'device: $device, '
         'platform: $platform, '
-        'window: $window}';
+        'navigation: $navigation, '
+        'panes: $panes}';
   }
 }

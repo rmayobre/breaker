@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 final class BreakerScaffold extends StatefulWidget {
   const BreakerScaffold({super.key});
@@ -21,7 +20,7 @@ final class BreakerScaffoldState extends State<BreakerScaffold> {
       drawer: throw UnimplementedError(),
       body: throw UnimplementedError(),
       floatingActionButton: throw UnimplementedError(),
-      bottomNavigationBar: throw UnimplementedError(),
+      bottomNavigationBar: throw UnimplementedError() ,
     );
   }
 

@@ -74,29 +74,19 @@ final class LayoutModel extends InheritedModel<LayoutAspect> {
     for (final aspect in dependencies) {
       switch (aspect) {
         case LayoutAspect.body:
-          if (body != oldWidget.body) {
-            return true;
-          }
+          if (body != oldWidget.body) return true;
           break;
         case LayoutAspect.axes:
-          if (axes != oldWidget.axes) {
-            return true;
-          }
+          if (axes != oldWidget.axes) return true;
           break;
         case LayoutAspect.axisSize:
-          if (axisSize != oldWidget.axisSize) {
-            return true;
-          }
+          if (axisSize != oldWidget.axisSize) return true;
           break;
         case LayoutAspect.margin:
-          if (margin != oldWidget.margin) {
-            return true;
-          }
+          if (margin != oldWidget.margin) return true;
           break;
         case LayoutAspect.spacing:
-          if (spacing != oldWidget.spacing) {
-            return true;
-          }
+          if (spacing != oldWidget.spacing) return true;
           break;
       }
     }

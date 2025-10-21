@@ -6,27 +6,25 @@ import 'package:flutter/widgets.dart';
 
 import '../../material.dart';
 
-final class BreakerWindow<T extends WindowType> extends StatefulWidget {
+final class BreakerWindow extends StatefulWidget {
   const BreakerWindow({
     super.key,
     required this.breakpoints,
     required this.child
   });
 
-  final List<WindowBreakpoint<T>> breakpoints;
+  final List<WindowBreakpoint> breakpoints;
 
   final Widget child;
 
   @override
-  State<StatefulWidget> createState() => BreakerWindowState<T>();
+  State<StatefulWidget> createState() => BreakerWindowState();
 }
 
-final class BreakerWindowState<T extends WindowType> extends State<BreakerWindow<T>> {
+final class BreakerWindowState extends State<BreakerWindow> {
 
-  late WindowBreakpoint<T> breakpoint;
-
+  late WindowBreakpoint breakpoint;
   late DeviceType device;
-
   late PlatformType platform;
 
   @override
@@ -76,7 +74,11 @@ final class BreakerWindowState<T extends WindowType> extends State<BreakerWindow
   @override
   Widget build(BuildContext context) {
     return WindowModel(
-      type: breakpoint.window,
+      device: breakpoint.device,
+      platform: breakpoint.platform,
+      orientation: breakpoint.orientation,
+      navigation: breakpoint.navigation,
+      panes: breakpoint.panes,
       child: widget.child,
     );
   }

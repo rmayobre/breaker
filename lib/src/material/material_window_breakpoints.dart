@@ -1,28 +1,33 @@
 import '../../breaker.dart';
-import 'window_class.dart';
+import '../window/navigation_type.dart';
 
-final List<WindowBreakpoint<WindowClass>> materialWindowBreakpoints = const [
+final List<WindowBreakpoint> materialWindowBreakpoints = const [
   WindowBreakpoint(
-    maxWidth: 600,
-    window: WindowClass.compact,
+      maxWidth: 600,
+      navigation: NavigationType.bottomBar,
+      panes: 1
   ),
   WindowBreakpoint(
-    minWidth: 600,
-    maxWidth: 839,
-    window: WindowClass.medium,
+      minWidth: 600,
+      maxWidth: 839,
+      navigation: NavigationType.sideBar,
+      panes: 2
   ),
   WindowBreakpoint(
     minWidth: 840,
     maxWidth: 1199,
-    window: WindowClass.expanded,
+    navigation: NavigationType.expandableSideBar,
+    panes: 2,
   ),
   WindowBreakpoint(
     minWidth: 1200,
     maxWidth: 1599,
-    window: WindowClass.large,
+    navigation: NavigationType.expandableSideBar,
+    panes: 2,
   ),
   WindowBreakpoint(
     minWidth: 1600,
-    window: WindowClass.xlarge,
+    navigation: NavigationType.expandedSideBar,
+    panes: 3,
   ),
 ];
