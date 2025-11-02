@@ -13,36 +13,16 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: BreakerWindow(
-        breakpoints: materialWindowBreakpoints,
-        child: const MyHomePage(title: 'Responsive Grid Demo')
-      ),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: const ResponsiveLayoutDemo(
-        paneOne: Placeholder(color: Colors.blue, strokeWidth: 4),
-        paneTwo: Placeholder(color: Colors.red, strokeWidth: 4),
-        paneThree: Placeholder(color: Colors.green, strokeWidth: 4),
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          title: Text('Responsive Grid Demo'),
+        ),
+        body: const ResponsiveLayoutDemo(
+          paneOne: Placeholder(color: Colors.blue, strokeWidth: 4),
+          paneTwo: Placeholder(color: Colors.red, strokeWidth: 4),
+          paneThree: Placeholder(color: Colors.green, strokeWidth: 4),
+        ),
       ),
     );
   }
