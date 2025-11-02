@@ -1,7 +1,21 @@
 name: breaker
-description: "A new Flutter package project."
+description: A responsive and adaptive layout framework built on top of Flutter. Utilizes a breakpoint system.
 version: 0.0.1
-homepage:
+repository: https://github.com/rmayobre/breaker
+
+platforms:
+  android:
+  ios:
+  linux:
+  macos:
+  web:
+  windows:
+
+topics:
+  - adaptive
+  - responsive
+  - layout
+  - breakpoints
 
 environment:
   sdk: ^3.9.0
