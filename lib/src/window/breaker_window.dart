@@ -4,7 +4,10 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
-import '../../material.dart';
+import 'window_model.dart';
+import '../device_type.dart';
+import '../platform_type.dart';
+import '../window_breakpoint.dart';
 
 final class BreakerWindow extends StatefulWidget {
   const BreakerWindow({
