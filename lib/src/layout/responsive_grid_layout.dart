@@ -28,14 +28,14 @@ import 'axis_calculator.dart';
 final class ResponsiveGridLayout extends StatelessWidget {
   const ResponsiveGridLayout({
     super.key,
-    this.isOverlayEnabled = false,
+    this.debugOverlay = false,
     this.axisExtent,
     required this.axisCount,
     required this.breakpoints,
     required this.itemBuilder,
   });
 
-  final bool isOverlayEnabled;
+  final bool debugOverlay;
   
   final double? axisExtent;
 
@@ -50,7 +50,7 @@ final class ResponsiveGridLayout extends StatelessWidget {
     return ResponsiveLayoutBuilder(
         breakpoints: breakpoints,
         builder: (context, constraints) {
-          if (isOverlayEnabled) {
+          if (debugOverlay) {
             return ResponsiveLayoutOverlay(
                 constraints: constraints,
                 child: _buildGrid(constraints)

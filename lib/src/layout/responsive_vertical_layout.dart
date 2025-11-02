@@ -10,12 +10,15 @@ import 'responsive_layout_overlay.dart';
 final class ResponsiveVerticalLayout extends StatelessWidget {
   const ResponsiveVerticalLayout({
     super.key,
-    this.isOverlayEnabled = false,
+    this.panes,
+    this.debugOverlay = false,
     required this.breakpoints,
     required this.cells
   });
+  
+  final int? panes;
 
-  final bool isOverlayEnabled;
+  final bool debugOverlay;
 
   final List<LayoutBreakpoint> breakpoints;
 
@@ -26,7 +29,7 @@ final class ResponsiveVerticalLayout extends StatelessWidget {
       ResponsiveLayoutBuilder(breakpoints: breakpoints, builder: _build);
 
   Widget _build(BuildContext context, LayoutConstraints constraints) {
-    if (isOverlayEnabled) {
+    if (debugOverlay) {
       return ResponsiveLayoutOverlay(
         constraints: constraints,
         child: _buildChildren(context, constraints),

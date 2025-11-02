@@ -201,7 +201,7 @@ final class ThreeColumnLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ResponsiveVerticalLayout(
-      isOverlayEnabled: true,
+      debugOverlay: true,
       breakpoints: materialLayoutBreakpoints,
       cells: [
         Cell(
