@@ -8,7 +8,6 @@ enum OverlayType {
 }
 
 final class ResponsiveLayoutOverlay extends StatelessWidget {
-
   const ResponsiveLayoutOverlay({
     super.key,
     this.type = OverlayType.vertical,

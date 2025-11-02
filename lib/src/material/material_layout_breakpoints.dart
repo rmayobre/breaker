@@ -1,6 +1,6 @@
 import '../layout_breakpoint.dart';
 
-List<LayoutBreakpoint> materialLayoutBreakpoints = const [
+final List<LayoutBreakpoint> materialLayoutBreakpoints = const [
   LayoutBreakpoint(
     maxWidth: 599,
     minMargin: 16,
