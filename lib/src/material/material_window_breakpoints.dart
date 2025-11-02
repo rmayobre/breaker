@@ -1,5 +1,4 @@
 import '../../breaker.dart';
-import '../window/navigation_type.dart';
 
 final List<WindowBreakpoint> materialWindowBreakpoints = const [
   WindowBreakpoint(
