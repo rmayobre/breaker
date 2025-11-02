@@ -39,8 +39,9 @@ final class LayoutConstraints {
   }
 
   static double calculateMargin(double width, double widthOffset, LayoutBreakpoint breakpoint) {
+    assert(breakpoint.minMargin < width, "Minimum Margin (${breakpoint.minMargin} is larger than available width ($width)");
     if (breakpoint.maxMargin == 0 && breakpoint.minMargin == 0) return 0;
-    if (breakpoint.maxMargin == 0  && widthOffset > 0) return (width - widthOffset) / 2;
+    if (breakpoint.maxMargin == 0 && widthOffset > 0) return (width - widthOffset) / 2; // Forgot why I'm not using minMargin in calculations
     if (breakpoint.maxMargin == 0 || breakpoint.maxWidth == 0) return breakpoint.minMargin;
     final double marginOffset = breakpoint.maxMargin - breakpoint.minMargin;
     final double percentage = ((width - breakpoint.minWidth)) / (breakpoint.maxWidth - breakpoint.minWidth);
