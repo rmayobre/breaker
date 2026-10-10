@@ -26,16 +26,25 @@ export 'src/platform_type.dart';
 export 'src/window_breakpoint.dart';
 
 final class Breaker {
+  static DeviceType? device(BuildContext context) =>
+      WindowModel.of(context, WindowAspect.device).device;
+  static PlatformType? platform(BuildContext context) =>
+      WindowModel.of(context, WindowAspect.platform).platform;
+  static Orientation? orientation(BuildContext context) =>
+      WindowModel.of(context, WindowAspect.orientation).orientation;
+  static NavigationType? navigation(BuildContext context) =>
+      WindowModel.of(context, WindowAspect.navigation).navigation;
+  static int panes(BuildContext context) =>
+      WindowModel.of(context, WindowAspect.panes).panes;
 
-  static DeviceType? device(BuildContext context) => WindowModel.of(context, WindowAspect.device).device;
-  static PlatformType? platform(BuildContext context) => WindowModel.of(context, WindowAspect.platform).platform;
-  static Orientation? orientation(BuildContext context) => WindowModel.of(context, WindowAspect.orientation).orientation;
-  static NavigationType? navigation(BuildContext context) => WindowModel.of(context, WindowAspect.navigation).navigation;
-  static int panes(BuildContext context) => WindowModel.of(context, WindowAspect.panes).panes;
-
-  static double? body(BuildContext context) => LayoutModel.of(context, LayoutAspect.body).body;
-  static int axes(BuildContext context) => LayoutModel.of(context, LayoutAspect.axes).axes;
-  static double axisSize(BuildContext context) => LayoutModel.of(context, LayoutAspect.axisSize).axisSize;
-  static double margin(BuildContext context) => LayoutModel.of(context, LayoutAspect.margin).margin;
-  static double spacing(BuildContext context) => LayoutModel.of(context, LayoutAspect.spacing).spacing;
+  static double? body(BuildContext context) =>
+      LayoutModel.of(context, LayoutAspect.body).body;
+  static int axes(BuildContext context) =>
+      LayoutModel.of(context, LayoutAspect.axes).axes;
+  static double axisSize(BuildContext context) =>
+      LayoutModel.of(context, LayoutAspect.axisSize).axisSize;
+  static double margin(BuildContext context) =>
+      LayoutModel.of(context, LayoutAspect.margin).margin;
+  static double spacing(BuildContext context) =>
+      LayoutModel.of(context, LayoutAspect.spacing).spacing;
 }

@@ -1,22 +1,17 @@
 import '../layout_breakpoint.dart';
 
 final List<LayoutBreakpoint> materialLayoutBreakpoints = const [
-  LayoutBreakpoint(
-    maxWidth: 599,
-    minMargin: 16,
-    axes: 4,
-    spacing: 4,
-  ),
+  LayoutBreakpoint(maxWidth: 600, minMargin: 16, axes: 4, spacing: 4),
   LayoutBreakpoint(
     minWidth: 600,
-    maxWidth: 904,
+    maxWidth: 905,
     minMargin: 32,
     axes: 8,
     spacing: 8,
   ),
   LayoutBreakpoint(
     minWidth: 905,
-    maxWidth: 1239,
+    maxWidth: 1240,
     body: 840,
     minMargin: 32,
     maxMargin: 199,
@@ -25,16 +20,17 @@ final List<LayoutBreakpoint> materialLayoutBreakpoints = const [
   ),
   LayoutBreakpoint(
     minWidth: 1240,
-    maxWidth: 1439,
+    maxWidth: 1440,
     minMargin: 200,
     axes: 12,
     spacing: 24,
   ),
   LayoutBreakpoint(
     minWidth: 1440,
-    minMargin: 200, // TODO putting larger minMargin no longer overflows pixels. It should not safe-guard against this and instead assert proper numbers.
+    minMargin:
+        200, // TODO putting larger minMargin no longer overflows pixels. It should not safe-guard against this and instead assert proper numbers.
     body: 1040,
     axes: 12,
     spacing: 36,
-  )
+  ),
 ];

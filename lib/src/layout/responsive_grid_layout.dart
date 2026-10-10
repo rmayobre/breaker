@@ -32,32 +32,41 @@ final class ResponsiveGridLayout extends StatelessWidget {
     this.axisExtent,
     required this.axisCount,
     required this.breakpoints,
+    this.fallback,
     required this.itemBuilder,
-  });
+  }) : assert(
+         breakpoints.length > 0,
+         'ResponsiveGridLayout requires at least one LayoutBreakpoint.',
+       );
 
   final bool debugOverlay;
-  
+
   final double? axisExtent;
 
   final AxisCalculator axisCount;
 
   final List<LayoutBreakpoint> breakpoints;
 
+  /// Used when no entry in [breakpoints] matches the current constraints.
+  /// If null, the first entry in [breakpoints] is used instead.
+  final LayoutBreakpoint? fallback;
+
   final NullableIndexedWidgetBuilder itemBuilder;
 
   @override
   Widget build(BuildContext context) {
     return ResponsiveLayoutBuilder(
-        breakpoints: breakpoints,
-        builder: (context, constraints) {
-          if (debugOverlay) {
-            return ResponsiveLayoutOverlay(
-                constraints: constraints,
-                child: _buildGrid(constraints)
-            );
-          }
-          return _buildGrid(constraints);
+      breakpoints: breakpoints,
+      fallback: fallback,
+      builder: (context, constraints) {
+        if (debugOverlay) {
+          return ResponsiveLayoutOverlay(
+            constraints: constraints,
+            child: _buildGrid(constraints),
+          );
         }
+        return _buildGrid(constraints);
+      },
     );
   }
 
@@ -69,7 +78,7 @@ final class ResponsiveGridLayout extends StatelessWidget {
           crossAxisCount: axisCount(constraints),
           crossAxisSpacing: constraints.spacing,
           mainAxisSpacing: constraints.spacing,
-          mainAxisExtent: axisExtent
+          mainAxisExtent: axisExtent,
         ),
         itemBuilder: itemBuilder,
       ),

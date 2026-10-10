@@ -4,13 +4,7 @@ import '../device_type.dart';
 import '../platform_type.dart';
 import 'navigation_type.dart';
 
-enum WindowAspect {
-  device,
-  platform,
-  orientation,
-  navigation,
-  panes;
-}
+enum WindowAspect { device, platform, orientation, navigation, panes }
 
 final class WindowModel extends InheritedModel<WindowAspect> {
   const WindowModel({
@@ -20,15 +14,21 @@ final class WindowModel extends InheritedModel<WindowAspect> {
     required this.orientation,
     required this.navigation,
     required this.panes,
-    required super.child
+    required super.child,
   });
 
-  static WindowModel of(BuildContext context, [WindowAspect? aspect]) => InheritedModel.inheritFrom(context, aspect: aspect)!;
-  static DeviceType? deviceOf(BuildContext context) => of(context, WindowAspect.device).device;
-  static PlatformType? platformOf(BuildContext context) => of(context, WindowAspect.platform).platform;
-  static Orientation? orientationOf(BuildContext context) => of(context, WindowAspect.orientation).orientation;
-  static NavigationType? navigationOf(BuildContext context) => of(context, WindowAspect.navigation).navigation;
-  static int panesOf(BuildContext context) => of(context, WindowAspect.panes).panes;
+  static WindowModel of(BuildContext context, [WindowAspect? aspect]) =>
+      InheritedModel.inheritFrom(context, aspect: aspect)!;
+  static DeviceType? deviceOf(BuildContext context) =>
+      of(context, WindowAspect.device).device;
+  static PlatformType? platformOf(BuildContext context) =>
+      of(context, WindowAspect.platform).platform;
+  static Orientation? orientationOf(BuildContext context) =>
+      of(context, WindowAspect.orientation).orientation;
+  static NavigationType? navigationOf(BuildContext context) =>
+      of(context, WindowAspect.navigation).navigation;
+  static int panesOf(BuildContext context) =>
+      of(context, WindowAspect.panes).panes;
 
   final DeviceType? device;
   final PlatformType? platform;
@@ -38,16 +38,17 @@ final class WindowModel extends InheritedModel<WindowAspect> {
 
   @override
   bool updateShouldNotify(covariant WindowModel oldWidget) =>
-      panes != oldWidget.panes
-          || navigation != oldWidget.navigation
-          || orientation != oldWidget.orientation
-          || platform != oldWidget.platform
-          || device != oldWidget.device;
+      panes != oldWidget.panes ||
+      navigation != oldWidget.navigation ||
+      orientation != oldWidget.orientation ||
+      platform != oldWidget.platform ||
+      device != oldWidget.device;
 
   @override
   bool updateShouldNotifyDependent(
-      covariant WindowModel oldWidget,
-      Set<WindowAspect> dependencies) {
+    covariant WindowModel oldWidget,
+    Set<WindowAspect> dependencies,
+  ) {
     for (final aspect in dependencies) {
       switch (aspect) {
         case WindowAspect.device:
