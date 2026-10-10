@@ -43,31 +43,31 @@ final class ResponsiveLayoutDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ResponsiveLayoutBuilder(
-        breakpoints: materialLayoutBreakpoints,
-        builder: (context, constraints) {
-          if (constraints.axes == 4) {
-            return ListLayout(
-              constraints: constraints,
-              paneOne: paneOne,
-              paneTwo: paneTwo,
-              paneThree: paneThree,
-            );
-          } else if (constraints.axes == 8) {
-            return ForkedLayout(
-              constraints: constraints,
-              paneOne: paneOne,
-              paneTwo: paneTwo,
-              paneThree: paneThree,
-            );
-          } else {
-            return ThreeColumnLayout(
-              constraints: constraints,
-              paneOne: paneOne,
-              paneTwo: paneTwo,
-              paneThree: paneThree,
-            );
-          }
+      breakpoints: materialLayoutBreakpoints,
+      builder: (context, constraints) {
+        if (constraints.axes == 4) {
+          return ListLayout(
+            constraints: constraints,
+            paneOne: paneOne,
+            paneTwo: paneTwo,
+            paneThree: paneThree,
+          );
+        } else if (constraints.axes == 8) {
+          return ForkedLayout(
+            constraints: constraints,
+            paneOne: paneOne,
+            paneTwo: paneTwo,
+            paneThree: paneThree,
+          );
+        } else {
+          return ThreeColumnLayout(
+            constraints: constraints,
+            paneOne: paneOne,
+            paneTwo: paneTwo,
+            paneThree: paneThree,
+          );
         }
+      },
     );
   }
 }
@@ -78,7 +78,7 @@ final class ListLayout extends StatelessWidget {
     required this.paneOne,
     required this.paneTwo,
     required this.paneThree,
-    required this.constraints
+    required this.constraints,
   });
 
   final Widget paneOne;
@@ -122,7 +122,7 @@ final class ForkedLayout extends StatelessWidget {
     required this.paneOne,
     required this.paneTwo,
     required this.paneThree,
-    required this.constraints
+    required this.constraints,
   });
 
   final Widget paneOne;
@@ -140,23 +140,20 @@ final class ForkedLayout extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: constraints.margin),
         child: Row(
-            children: [
-              SizedBox(
-                width: spanSizeTotal + spacingTotal,
-                child: Column(
-                  children: [
-                    Flexible(child: paneOne),
-                    SizedBox(height: constraints.spacing),
-                    Flexible(child: paneTwo),
-                  ],
-                ),
+          children: [
+            SizedBox(
+              width: spanSizeTotal + spacingTotal,
+              child: Column(
+                children: [
+                  Flexible(child: paneOne),
+                  SizedBox(height: constraints.spacing),
+                  Flexible(child: paneTwo),
+                ],
               ),
-              SizedBox(width: constraints.spacing),
-              SizedBox(
-                width: spanSizeTotal + spacingTotal,
-                child: paneThree,
-              )
-            ]
+            ),
+            SizedBox(width: constraints.spacing),
+            SizedBox(width: spanSizeTotal + spacingTotal, child: paneThree),
+          ],
         ),
       ),
     );
@@ -169,7 +166,7 @@ final class ThreeColumnLayout extends StatelessWidget {
     required this.paneOne,
     required this.paneTwo,
     required this.paneThree,
-    required this.constraints
+    required this.constraints,
   });
 
   final Widget paneOne;

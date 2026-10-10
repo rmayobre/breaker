@@ -60,6 +60,11 @@ To build custom layouts with support for the `LayoutBreakpoint`s, use the `Respo
 available widgets built with the `ResponsiveLayoutBuilder` (e.g. `ResponsiveVerticalLayout`, `ResponsiveGridLayout`, 
 and `ResponsiveLayoutOverlay`).
 
+Both `BreakerWindow` and every `LayoutBreakpoint`-based widget above accept an optional `fallback` breakpoint, used
+whenever none of the entries in `breakpoints` match the current window size or layout constraints. If `fallback` isn't
+supplied, the first breakpoint in the list is used instead — so a gap in your breakpoints never crashes the app, it
+just falls back to your smallest/simplest layout.
+
 ```dart
 Widget build(BuildContext context) {
   return ResponsiveLayoutBuilder(context, builder: (context, constraints) {
@@ -156,6 +161,10 @@ class MyLayout extends StatelessWidget {
    }
 }
 ```
+
+Neither breakpoint list above needs to cover every possible width/height: pass a `fallback:` breakpoint to
+`BreakerWindow` or `ResponsiveVerticalLayout` to control what's used when nothing matches, or omit it to fall back to
+the first breakpoint in the list.
 
 ### Material
 

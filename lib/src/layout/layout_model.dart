@@ -1,12 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-enum LayoutAspect {
-  body,
-  axes,
-  axisSize,
-  margin,
-  spacing;
-}
+enum LayoutAspect { body, axes, axisSize, margin, spacing }
 
 final class LayoutModel extends InheritedModel<LayoutAspect> {
   const LayoutModel({
@@ -16,7 +10,7 @@ final class LayoutModel extends InheritedModel<LayoutAspect> {
     required this.axisSize,
     required this.margin,
     required this.spacing,
-    required super.child
+    required super.child,
   });
 
   static LayoutModel of(BuildContext context, [LayoutAspect? aspect]) =>
@@ -33,13 +27,17 @@ final class LayoutModel extends InheritedModel<LayoutAspect> {
 
   @override
   bool updateShouldNotify(covariant LayoutModel oldWidget) =>
-      body != oldWidget.body
-          || axes != oldWidget.axes
-          || margin != oldWidget.margin
-          || spacing != oldWidget.spacing;
+      body != oldWidget.body ||
+      axes != oldWidget.axes ||
+      axisSize != oldWidget.axisSize ||
+      margin != oldWidget.margin ||
+      spacing != oldWidget.spacing;
 
   @override
-  bool updateShouldNotifyDependent(covariant LayoutModel oldWidget, Set<LayoutAspect> dependencies) {
+  bool updateShouldNotifyDependent(
+    covariant LayoutModel oldWidget,
+    Set<LayoutAspect> dependencies,
+  ) {
     for (final aspect in dependencies) {
       switch (aspect) {
         case LayoutAspect.body:

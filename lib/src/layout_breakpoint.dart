@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 
-final class LayoutBreakpoint { // TODO move to separate file
+final class LayoutBreakpoint {
+  // TODO move to separate file
 
   final double minHeight;
 
@@ -22,23 +23,26 @@ final class LayoutBreakpoint { // TODO move to separate file
 
   const LayoutBreakpoint({
     this.minHeight = 0,
-    this.maxHeight = double.maxFinite,
+    this.maxHeight = double.infinity,
     this.minWidth = 0,
-    this.maxWidth = double.maxFinite,
+    this.maxWidth = double.infinity,
     this.body,
     this.minMargin = 0,
     this.maxMargin = 0,
     required this.axes,
-    required this.spacing
+    required this.spacing,
   }) : assert(minHeight >= 0),
-        assert(maxHeight >= 0),
-        assert(minWidth >= 0),
-        assert(maxWidth >= 0),
-        assert(body == null || body >= 0),
-        assert(minMargin >= 0),
-        assert(maxMargin >= 0),
-        assert(axes >= 0),
-        assert(spacing >= 0);
+       assert(maxHeight >= 0),
+       assert(minWidth >= 0),
+       assert(maxWidth >= 0),
+       assert(body == null || body >= 0),
+       assert(minMargin >= 0),
+       assert(maxMargin >= 0),
+       assert(
+         axes >= 1,
+         'axes must be at least 1; an axes of 0 divides by zero when calculating axis size.',
+       ),
+       assert(spacing >= 0);
 
   bool inRange(BoxConstraints constraints) {
     final height = constraints.normalize().maxHeight;
@@ -61,25 +65,30 @@ final class LayoutBreakpoint { // TODO move to separate file
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is LayoutBreakpoint && runtimeType == other.runtimeType &&
-              minHeight == other.minHeight && maxHeight == other.maxHeight &&
-              minWidth == other.minWidth && maxWidth == other.maxWidth &&
-              body == other.body && axes == other.axes &&
-              minMargin == other.minMargin && maxMargin == other.maxMargin &&
-              spacing == other.spacing;
+      other is LayoutBreakpoint &&
+          runtimeType == other.runtimeType &&
+          minHeight == other.minHeight &&
+          maxHeight == other.maxHeight &&
+          minWidth == other.minWidth &&
+          maxWidth == other.maxWidth &&
+          body == other.body &&
+          axes == other.axes &&
+          minMargin == other.minMargin &&
+          maxMargin == other.maxMargin &&
+          spacing == other.spacing;
 
   @override
-  int get hashCode =>
-      Object.hash(
-          minHeight,
-          maxHeight,
-          minWidth,
-          maxWidth,
-          body,
-          axes,
-          minMargin,
-          maxMargin,
-          spacing);
+  int get hashCode => Object.hash(
+    minHeight,
+    maxHeight,
+    minWidth,
+    maxWidth,
+    body,
+    axes,
+    minMargin,
+    maxMargin,
+    spacing,
+  );
 
   @override
   String toString() {

@@ -1,6 +1,1 @@
-enum NavigationType {
-  bottomBar,
-  sideBar,
-  expandableSideBar,
-  expandedSideBar;
-}
+enum NavigationType { bottomBar, sideBar, expandableSideBar, expandedSideBar }

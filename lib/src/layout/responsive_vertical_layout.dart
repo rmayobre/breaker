@@ -13,20 +13,31 @@ final class ResponsiveVerticalLayout extends StatelessWidget {
     this.panes,
     this.debugOverlay = false,
     required this.breakpoints,
-    required this.cells
-  });
-  
+    this.fallback,
+    required this.cells,
+  }) : assert(
+         breakpoints.length > 0,
+         'ResponsiveVerticalLayout requires at least one LayoutBreakpoint.',
+       );
+
   final int? panes;
 
   final bool debugOverlay;
 
   final List<LayoutBreakpoint> breakpoints;
 
+  /// Used when no entry in [breakpoints] matches the current constraints.
+  /// If null, the first entry in [breakpoints] is used instead.
+  final LayoutBreakpoint? fallback;
+
   final List<Cell> cells;
 
   @override
-  Widget build(BuildContext context) =>
-      ResponsiveLayoutBuilder(breakpoints: breakpoints, builder: _build);
+  Widget build(BuildContext context) => ResponsiveLayoutBuilder(
+    breakpoints: breakpoints,
+    fallback: fallback,
+    builder: _build,
+  );
 
   Widget _build(BuildContext context, LayoutConstraints constraints) {
     if (debugOverlay) {
@@ -42,23 +53,21 @@ final class ResponsiveVerticalLayout extends StatelessWidget {
     final rowChildren = <Widget>[];
     for (int i = 0; i < cells.length; i++) {
       rowChildren.add(cells[i].build(context, constraints));
-      if (i < cells.length - 1) rowChildren.add(SizedBox(width: constraints.spacing)); // ignore the last index.
+      if (i < cells.length - 1) {
+        // ignore the last index.
+        rowChildren.add(SizedBox(width: constraints.spacing));
+      }
     }
     if (constraints.body != null) {
       return Container(
         width: constraints.body!,
         margin: EdgeInsets.symmetric(horizontal: constraints.margin),
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          children: rowChildren,
-        ),
+        child: Row(mainAxisSize: MainAxisSize.max, children: rowChildren),
       );
     }
     return Container(
       margin: EdgeInsets.symmetric(horizontal: constraints.margin),
-      child: Row(
-        children: rowChildren
-      ),
+      child: Row(children: rowChildren),
     );
   }
 }
