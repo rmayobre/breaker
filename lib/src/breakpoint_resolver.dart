@@ -1,3 +1,5 @@
+/// Resolves which breakpoint applies.
+///
 /// Returns the first element of [breakpoints] for which [matches] returns
 /// true. If none match, returns [fallback] if provided, otherwise the first
 /// element of [breakpoints].
