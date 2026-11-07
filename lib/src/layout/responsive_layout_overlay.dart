@@ -2,8 +2,14 @@ import 'package:flutter/widgets.dart';
 
 import 'layout_constraints.dart';
 
+/// The direction of the axes drawn by a [ResponsiveLayoutOverlay].
 enum OverlayType { horizontal, vertical }
 
+/// Draws the margins, axes and spacing of a layout behind [child] for
+/// debugging.
+///
+/// Only [OverlayType.vertical] (columns) is currently drawn; [type] is
+/// reserved for future horizontal support.
 final class ResponsiveLayoutOverlay extends StatelessWidget {
   const ResponsiveLayoutOverlay({
     super.key,
@@ -16,23 +22,33 @@ final class ResponsiveLayoutOverlay extends StatelessWidget {
     required this.child,
   });
 
+  /// Default color of the axes (red).
   static const int defaultSpanColor = 0xFFF44336;
+  /// Default color of the margins (green).
   static const int defaultMarginColor = 0xFF4CAF50;
+  /// Default color of the spacing between axes (cyan).
   static const int defaultSpacingColor = 0xFF00BCD4;
   static const double _overlayOpacity = 0.2;
 
+  /// Color of the axes.
   final Color spanColor;
 
+  /// Color of the margins.
   final Color marginColor;
 
+  /// Color of the spacing between axes.
   final Color spacingColor;
 
+  /// The opacity applied to [child], letting the overlay show through.
   final double opacity;
 
+  /// The direction of the axes to draw.
   final OverlayType type;
 
+  /// The resolved layout to visualize.
   final LayoutConstraints constraints;
 
+  /// The content drawn on top of the overlay.
   final Widget child;
 
   @override

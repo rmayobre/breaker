@@ -6,7 +6,11 @@ import 'responsive_layout_builder.dart';
 import 'responsive_layout_overlay.dart';
 import 'axis_calculator.dart';
 
+/// A [GridView] whose column count, spacing and margins follow the active
+/// [LayoutBreakpoint].
 ///
+/// Breakpoints are evaluated in order and the first match wins. If none match,
+/// [fallback] is used, or the first breakpoint when [fallback] is null.
 ///
 /// ## Example Build Function
 /// ```dart
@@ -18,7 +22,7 @@ import 'axis_calculator.dart';
 ///         title: Text(widget.title),
 ///       ),
 ///       body: ResponsiveGridLayout(
-///           columns: (constraints) => (constraints.span / 2).toInt(), // Each item covers two columns.
+///           axisCount: (constraints) => constraints.axes ~/ 2, // Each item covers two axes.
 ///           breakpoints: materialLayoutBreakpoints,
 ///           itemBuilder: (context, index) => Card(child: Center(child: Text('Item $index')))
 ///       ),
@@ -39,18 +43,24 @@ final class ResponsiveGridLayout extends StatelessWidget {
          'ResponsiveGridLayout requires at least one LayoutBreakpoint.',
        );
 
+  /// Whether to draw a [ResponsiveLayoutOverlay] behind the grid.
   final bool debugOverlay;
 
+  /// The fixed extent of each item along the scrolling axis, or null to make
+  /// items square.
   final double? axisExtent;
 
+  /// Calculates the number of grid columns from the resolved constraints.
   final AxisCalculator axisCount;
 
+  /// The candidate breakpoints, in priority order. Must not be empty.
   final List<LayoutBreakpoint> breakpoints;
 
   /// Used when no entry in [breakpoints] matches the current constraints.
   /// If null, the first entry in [breakpoints] is used instead.
   final LayoutBreakpoint? fallback;
 
+  /// Builds the item at an index. Returning null ends the grid.
   final NullableIndexedWidgetBuilder itemBuilder;
 
   @override

@@ -35,11 +35,11 @@ then depend on the `WindowModel` by referencing the `Breaker` static methods:
 
 ```dart
 Widget build(BuildContext context) {
-  Breaker.device(context); // Get breakpoint's device type.
-  Breaker.platform(context); // Get breakpoint's platform type.
-  Breaker.orientation(context); // Get breakpoint's orientation type.
-  Breaker.navigation(context); // Get breakpoint's navigation type.
-  Breaker.panes(context); // Get number of panes supported by Breakpoint.
+  Breaker.device(context); // The device type (mobile, web, desktop).
+  Breaker.platform(context); // The platform (android, ios, web, linux, macos, windows).
+  Breaker.orientation(context); // The window orientation.
+  Breaker.navigation(context); // The breakpoint's navigation type.
+  Breaker.panes(context); // Number of panes supported by the breakpoint.
 }
 ```
 
@@ -48,11 +48,11 @@ to the Layout Breakpoint values. Use the `Breaker` static methods to access each
 
 ```dart
 Widget build(BuildContext context) {
-  Breaker.body(context); // Get breakpoint's device type.
-  Breaker.axes(context); // Get breakpoint's platform type.
-  Breaker.axisSize(context); // Get breakpoint's orientation type.
-  Breaker.margin(context); // Get breakpoint's navigation type.
-  Breaker.spacing(context); // Get number of panes supported by Breakpoint.
+  Breaker.body(context); // Fixed body width, or null if the body scales.
+  Breaker.axes(context); // Number of axes (columns).
+  Breaker.axisSize(context); // Size of a single axis, excluding spacing.
+  Breaker.margin(context); // Margin on each side of the body.
+  Breaker.spacing(context); // Spacing between axes.
 }
 ```
 
@@ -67,14 +67,17 @@ just falls back to your smallest/simplest layout.
 
 ```dart
 Widget build(BuildContext context) {
-  return ResponsiveLayoutBuilder(context, builder: (context, constraints) {
-    final body = constraints.body;
-    final axes = constraints.axes;
-    final axisSize = constraints.axisSize;
-    final margin = constraints.margin;
-    final spacing = constraints.spacing;
-    return MyResponsiveWidget(...);
-  });
+  return ResponsiveLayoutBuilder(
+    breakpoints: materialLayoutBreakpoints,
+    builder: (context, constraints) {
+      final body = constraints.body;
+      final axes = constraints.axes;
+      final axisSize = constraints.axisSize;
+      final margin = constraints.margin;
+      final spacing = constraints.spacing;
+      return MyResponsiveWidget(...);
+    },
+  );
 }
 ```
 
@@ -84,7 +87,7 @@ Creating a simple two Breakpoint window breakpoint system with a responsive vert
 widget `ResponsiveVerticalLayout`.
 
 ```dart
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:breaker/breaker.dart';
 
 
@@ -162,6 +165,9 @@ class MyLayout extends StatelessWidget {
 }
 ```
 
+Breakpoints are evaluated in list order and the first match wins; ranges are inclusive, so adjacent
+breakpoints can share a boundary value (e.g. `maxWidth: 600` and `minWidth: 600`).
+
 Neither breakpoint list above needs to cover every possible width/height: pass a `fallback:` breakpoint to
 `BreakerWindow` or `ResponsiveVerticalLayout` to control what's used when nothing matches, or omit it to fall back to
 the first breakpoint in the list.
@@ -170,10 +176,11 @@ the first breakpoint in the list.
 
 The Material Design breakpoint systems are also available in the `breaker/material.dart` package. Change from the standard
 `breaker/breaker.dart` package and reference the available `materialWindowBreakpoints` and `materialLayoutBreakpoints`. 
-This will provide the same adaptive and responsive systems supported in Material 2 & 3.
+The window breakpoints follow the Material window size classes and the layout breakpoints follow the Material
+responsive layout grid.
 
 ```dart
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:breaker/material.dart';
 
 class MyWindow extends StatelessWidget {

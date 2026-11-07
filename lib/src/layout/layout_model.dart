@@ -1,7 +1,13 @@
 import 'package:flutter/widgets.dart';
 
+/// The individually observable values of a [LayoutModel].
 enum LayoutAspect { body, axes, axisSize, margin, spacing }
 
+/// An [InheritedModel] exposing the resolved layout values.
+///
+/// Dependents subscribe to a single [LayoutAspect] and are rebuilt only when
+/// that aspect changes. Provided by [BreakerLayout]; most code should use the
+/// [Breaker] accessors rather than this class directly.
 final class LayoutModel extends InheritedModel<LayoutAspect> {
   const LayoutModel({
     super.key,
@@ -13,16 +19,30 @@ final class LayoutModel extends InheritedModel<LayoutAspect> {
     required super.child,
   });
 
+  /// Returns the nearest [LayoutModel], depending on [aspect] if given.
+  ///
+  /// Throws if there is no [BreakerLayout] ancestor.
   static LayoutModel of(BuildContext context, [LayoutAspect? aspect]) =>
       InheritedModel.inheritFrom(context, aspect: aspect)!;
 
+  /// Like [of] but returns null instead of throwing when there is no
+  /// [BreakerLayout] ancestor. Depends on every aspect of the model.
   static LayoutModel? maybeOf(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType();
 
+  /// The fixed body width, or null when the body scales.
   final double? body;
+
+  /// The number of axes (columns).
   final int axes;
+
+  /// The size of a single axis, excluding spacing.
   final double axisSize;
+
+  /// The margin on each side of the body.
   final double margin;
+
+  /// The spacing between adjacent axes.
   final double spacing;
 
   @override

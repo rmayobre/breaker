@@ -1,5 +1,9 @@
 import '../layout_breakpoint.dart';
 
+/// Layout breakpoints following the Material Design responsive layout grid.
+///
+/// Intended to be passed as the `breakpoints` of [BreakerLayout] or any
+/// `Responsive*Layout` widget. Widths are in logical pixels.
 final List<LayoutBreakpoint> materialLayoutBreakpoints = const [
   LayoutBreakpoint(maxWidth: 600, minMargin: 16, axes: 4, spacing: 4),
   LayoutBreakpoint(
@@ -27,8 +31,7 @@ final List<LayoutBreakpoint> materialLayoutBreakpoints = const [
   ),
   LayoutBreakpoint(
     minWidth: 1440,
-    minMargin:
-        200, // TODO putting larger minMargin no longer overflows pixels. It should not safe-guard against this and instead assert proper numbers.
+    minMargin: 200,
     body: 1040,
     axes: 12,
     spacing: 36,

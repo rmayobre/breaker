@@ -1,3 +1,9 @@
+## 0.0.2
+
+- Added API documentation for all public classes, fields and enums.
+- Corrected outdated README examples.
+- Added a GitHub Actions workflow to publish releases to pub.dev.
+
 ## 0.0.1
 
 Initial release with the following features:

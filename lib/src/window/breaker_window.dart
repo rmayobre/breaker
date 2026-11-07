@@ -10,6 +10,15 @@ import '../device_type.dart';
 import '../platform_type.dart';
 import '../window_breakpoint.dart';
 
+/// Resolves the active [WindowBreakpoint] from the window size and exposes the
+/// result to descendants through a [WindowModel].
+///
+/// Place it near the root of the widget tree, below a [MediaQuery] (provided
+/// by `WidgetsApp`/`MaterialApp`). Descendants read the values with the
+/// [Breaker] accessors (e.g. `Breaker.panes(context)`).
+///
+/// Breakpoints are evaluated in order and the first match wins. If none match,
+/// [fallback] is used, or the first breakpoint when [fallback] is null.
 final class BreakerWindow extends StatefulWidget {
   const BreakerWindow({
     super.key,
@@ -21,18 +30,22 @@ final class BreakerWindow extends StatefulWidget {
          'BreakerWindow requires at least one WindowBreakpoint.',
        );
 
+  /// The candidate breakpoints, in priority order. Must not be empty.
   final List<WindowBreakpoint> breakpoints;
 
   /// Used when no entry in [breakpoints] matches the current window. If
   /// null, the first entry in [breakpoints] is used instead.
   final WindowBreakpoint? fallback;
 
+  /// The widget subtree that can read the resolved window values.
   final Widget child;
 
   @override
   State<StatefulWidget> createState() => BreakerWindowState();
 }
 
+/// State for [BreakerWindow]. Detects the device and platform once and
+/// re-resolves the breakpoint whenever the [MediaQuery] changes.
 final class BreakerWindowState extends State<BreakerWindow> {
   late WindowBreakpoint breakpoint;
   late DeviceType device;

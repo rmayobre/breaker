@@ -4,23 +4,47 @@ import 'device_type.dart';
 import 'platform_type.dart';
 import 'window/navigation_type.dart';
 
+/// Describes the window configuration for a range of window sizes.
+///
+/// A breakpoint applies when the window size is within
+/// `[minWidth, maxWidth]` and `[minHeight, maxHeight]` (both inclusive) and the
+/// optional [orientation], [device] and [platform] filters match; filters left
+/// null match anything. Breakpoints are evaluated in list order and the first
+/// match wins, so adjacent breakpoints may share a boundary value.
+///
+/// ```dart
+/// const WindowBreakpoint(
+///   minWidth: 600,
+///   navigation: NavigationType.sideBar,
+///   panes: 2,
+/// )
+/// ```
 final class WindowBreakpoint {
+  /// The smallest window height, inclusive, at which this breakpoint applies.
   final double minHeight;
 
+  /// The largest window height, inclusive, at which this breakpoint applies.
   final double maxHeight;
 
+  /// The smallest window width, inclusive, at which this breakpoint applies.
   final double minWidth;
 
+  /// The largest window width, inclusive, at which this breakpoint applies.
   final double maxWidth;
 
+  /// Restricts this breakpoint to one [Orientation]; null matches both.
   final Orientation? orientation;
 
+  /// Restricts this breakpoint to one [DeviceType]; null matches any.
   final DeviceType? device;
 
+  /// Restricts this breakpoint to one [PlatformType]; null matches any.
   final PlatformType? platform;
 
+  /// The navigation style to use while this breakpoint is active, if any.
   final NavigationType? navigation;
 
+  /// The number of panes supported while this breakpoint is active.
   final int panes;
 
   const WindowBreakpoint({
@@ -38,6 +62,8 @@ final class WindowBreakpoint {
        assert(minWidth >= 0),
        assert(maxWidth >= 0);
 
+  /// Whether this breakpoint applies to the window described by [mediaQuery]
+  /// running on [device] and [platform].
   bool inRange({
     required MediaQueryData mediaQuery,
     required DeviceType device,

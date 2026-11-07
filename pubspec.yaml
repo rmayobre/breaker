@@ -1,6 +1,6 @@
 name: breaker
 description: A responsive and adaptive layout framework built on top of Flutter. Utilizes a breakpoint system.
-version: 0.0.1
+version: 0.0.2
 repository: https://github.com/rmayobre/breaker
 
 platforms:
