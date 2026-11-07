@@ -54,16 +54,20 @@ final class Breaker {
   /// The [DeviceType] of the running device.
   static DeviceType? device(BuildContext context) =>
       WindowModel.of(context, WindowAspect.device).device;
+
   /// The [PlatformType] of the running platform.
   static PlatformType? platform(BuildContext context) =>
       WindowModel.of(context, WindowAspect.platform).platform;
+
   /// The current window [Orientation].
   static Orientation? orientation(BuildContext context) =>
       WindowModel.of(context, WindowAspect.orientation).orientation;
+
   /// The [NavigationType] of the active [WindowBreakpoint], or null if the
   /// breakpoint doesn't specify one.
   static NavigationType? navigation(BuildContext context) =>
       WindowModel.of(context, WindowAspect.navigation).navigation;
+
   /// The number of panes supported by the active [WindowBreakpoint].
   static int panes(BuildContext context) =>
       WindowModel.of(context, WindowAspect.panes).panes;
@@ -72,15 +76,19 @@ final class Breaker {
   /// body scales with the available width.
   static double? body(BuildContext context) =>
       LayoutModel.of(context, LayoutAspect.body).body;
+
   /// The number of axes (columns) of the active [LayoutBreakpoint].
   static int axes(BuildContext context) =>
       LayoutModel.of(context, LayoutAspect.axes).axes;
+
   /// The size of a single axis (column), excluding spacing.
   static double axisSize(BuildContext context) =>
       LayoutModel.of(context, LayoutAspect.axisSize).axisSize;
+
   /// The margin applied to each side of the body.
   static double margin(BuildContext context) =>
       LayoutModel.of(context, LayoutAspect.margin).margin;
+
   /// The spacing between adjacent axes.
   static double spacing(BuildContext context) =>
       LayoutModel.of(context, LayoutAspect.spacing).spacing;

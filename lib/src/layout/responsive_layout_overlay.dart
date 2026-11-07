@@ -24,8 +24,10 @@ final class ResponsiveLayoutOverlay extends StatelessWidget {
 
   /// Default color of the axes (red).
   static const int defaultSpanColor = 0xFFF44336;
+
   /// Default color of the margins (green).
   static const int defaultMarginColor = 0xFF4CAF50;
+
   /// Default color of the spacing between axes (cyan).
   static const int defaultSpacingColor = 0xFF00BCD4;
   static const double _overlayOpacity = 0.2;

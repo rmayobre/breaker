@@ -41,12 +41,16 @@ final class WindowModel extends InheritedModel<WindowAspect> {
 
   /// The [DeviceType] of the running device.
   final DeviceType? device;
+
   /// The [PlatformType] of the running platform.
   final PlatformType? platform;
+
   /// The current window [Orientation].
   final Orientation? orientation;
+
   /// The navigation style of the active breakpoint, if it specifies one.
   final NavigationType? navigation;
+
   /// The number of panes of the active breakpoint.
   final int panes;
 
